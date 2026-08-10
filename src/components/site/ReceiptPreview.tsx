@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Download, Link2 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -34,10 +35,15 @@ export function ReceiptPreview({ order }: { order: PlacedOrder }) {
 
         <ScrollArea className="max-h-[60vh]">
           <div className="px-6 py-5 text-sm">
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="font-display text-lg tracking-[0.15em]">{BRAND.short}</p>
-                <p className="text-xs text-muted-foreground">{BRAND.tagline}</p>
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-24 overflow-hidden rounded border border-border bg-muted/40">
+                  <Image src={BRAND.logo} alt={`${BRAND.name} logo`} width={96} height={40} className="h-full w-full object-contain" />
+                </div>
+                <div>
+                  <p className="font-display text-lg tracking-[0.15em]">{BRAND.short}</p>
+                  <p className="text-xs text-muted-foreground">{BRAND.tagline}</p>
+                </div>
               </div>
               <div className="text-right">
                 <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Receipt</p>

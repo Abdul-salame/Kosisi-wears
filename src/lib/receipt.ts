@@ -15,15 +15,38 @@ export const trackingPath = (id: string) => `/track?order=${encodeURIComponent(i
 export const trackingUrl = (id: string) =>
   (typeof window !== "undefined" ? window.location.origin : "https://kosisiwears.com") + trackingPath(id);
 
-export function downloadReceiptPdf(order: PlacedOrder) {
+const loadImageDataUrl = async (src: string) => {
+  const res = await fetch(src);
+  if (!res.ok) throw new Error(`Failed to load image: ${src}`);
+  const blob = await res.blob();
+  return await new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+};
+
+export async function downloadReceiptPdf(order: PlacedOrder) {
   const doc = new jsPDF({ unit: "pt", format: "a4" });
   const W = doc.internal.pageSize.getWidth();
   const M = 48;
   let y = 64;
+  let brandTextX = M;
+
+  try {
+    const logoDataUrl = await loadImageDataUrl(BRAND.logo);
+    const logoW = 72;
+    const logoH = 28;
+    doc.addImage(logoDataUrl, "JPEG", M, y - logoH, logoW, logoH);
+    brandTextX += logoW + 12;
+  } catch {
+    // If the logo cannot be loaded, fall back to text-only header.
+  }
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(20);
-  doc.text(BRAND.short, M, y);
+  doc.text(BRAND.short, brandTextX, y);
   doc.setFont("helvetica", "normal");
   doc.setFontSize(9);
   doc.setTextColor(120);
