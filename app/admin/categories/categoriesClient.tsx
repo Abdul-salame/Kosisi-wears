@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Plus, Pencil, Trash2 } from "lucide-react";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { Button } from "@/components/ui/button";
@@ -15,7 +15,25 @@ import { toast } from "sonner";
 
 function CategoryDialog({ category, trigger }: { category?: AdminCategory; trigger?: React.ReactNode }) {
   const [open, setOpen] = useState(false);
+  const [imageDataUrl, setImageDataUrl] = useState<string>(category?.image ?? "");
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const editing = !!category;
+
+  useEffect(() => {
+    if (!open) return;
+    setImageDataUrl(category?.image ?? "");
+  }, [category, open]);
+
+  const onImagePick = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      setImageDataUrl(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -45,7 +63,31 @@ function CategoryDialog({ category, trigger }: { category?: AdminCategory; trigg
         >
           <div className="space-y-2"><Label>Name</Label><Input name="name" required defaultValue={category?.name} /></div>
           <div className="space-y-2"><Label>Slug</Label><Input name="slug" defaultValue={category?.slug} placeholder="auto from name" /></div>
-          <div className="space-y-2"><Label>Image URL</Label><Input name="image" defaultValue={category?.image} /></div>
+          <div className="space-y-2">
+            <Label>Category image</Label>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+              <div className="flex-1">
+                <Button type="button" variant="outline" onClick={() => fileInputRef.current?.click()}>Select image</Button>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={onImagePick}
+                />
+              </div>
+              {imageDataUrl ? (
+                <div className="h-24 w-24 overflow-hidden rounded border border-border bg-muted">
+                  <img src={imageDataUrl} alt="Category preview" className="h-full w-full object-cover" />
+                </div>
+              ) : (
+                <div className="h-24 w-24 rounded border border-dashed border-border/70 bg-muted/50 text-center text-xs text-muted-foreground flex items-center justify-center">
+                  No image selected
+                </div>
+              )}
+            </div>
+          </div>
+          <input type="hidden" name="image" value={imageDataUrl} />
           <div className="space-y-2"><Label>Status</Label>
             <Select name="status" defaultValue={category?.status ?? "Active"}>
               <SelectTrigger><SelectValue /></SelectTrigger>

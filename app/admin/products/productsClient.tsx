@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Plus, Search, Trash2, Pencil, Filter } from "lucide-react";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { Button } from "@/components/ui/button";
@@ -55,19 +55,19 @@ export function PageClient() {
     >
       <div className="border border-border/60 bg-card">
         <div className="flex flex-wrap items-center gap-3 border-b border-border/40 p-4">
-          <div className="relative flex-1 min-w-[220px]">
+          <div className="relative flex-1 min-w-55">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input placeholder="Search products or SKU…" value={q} onChange={(e) => setQ(e.target.value)} className="pl-9" />
           </div>
           <Select value={cat} onValueChange={setCat}>
-            <SelectTrigger className="w-[160px]"><Filter className="mr-2 h-3.5 w-3.5" /><SelectValue /></SelectTrigger>
+            <SelectTrigger className="w-40"><Filter className="mr-2 h-3.5 w-3.5" /><SelectValue /></SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All categories</SelectItem>
               {cats.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}
             </SelectContent>
           </Select>
           <Select value={status} onValueChange={setStatus}>
-            <SelectTrigger className="w-[140px]"><SelectValue /></SelectTrigger>
+            <SelectTrigger className="w-40"><SelectValue /></SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All status</SelectItem>
               <SelectItem value="Active">Active</SelectItem>
@@ -76,7 +76,7 @@ export function PageClient() {
             </SelectContent>
           </Select>
           <Select value={sort} onValueChange={setSort}>
-            <SelectTrigger className="w-[140px]"><SelectValue /></SelectTrigger>
+            <SelectTrigger className="w-40"><SelectValue /></SelectTrigger>
             <SelectContent>
               <SelectItem value="name">Name</SelectItem>
               <SelectItem value="price">Price (high)</SelectItem>
@@ -169,7 +169,25 @@ export function PageClient() {
 
 function ProductDialog({ product, trigger }: { product?: AdminProduct; trigger?: React.ReactNode }) {
   const [open, setOpen] = useState(false);
+  const [imageDataUrl, setImageDataUrl] = useState<string>(product?.image ?? "");
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const editing = !!product;
+
+  useEffect(() => {
+    if (!open) return;
+    setImageDataUrl(product?.image ?? "");
+  }, [product, open]);
+
+  const onImagePick = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      setImageDataUrl(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -219,7 +237,31 @@ function ProductDialog({ product, trigger }: { product?: AdminProduct; trigger?:
           <div className="space-y-2"><Label>Stock</Label><Input name="stock" type="number" defaultValue={product?.stock ?? 50} /></div>
           <div className="space-y-2"><Label>Sizes</Label><Input name="sizes" defaultValue={(product?.sizes ?? ["S","M","L","XL"]).join(", ")} /></div>
           <div className="md:col-span-2 space-y-2"><Label>Description</Label><Textarea name="description" rows={3} defaultValue="Cut from premium heavyweight fabric with signature gold detailing." /></div>
-          <div className="md:col-span-2 space-y-2"><Label>Image URL</Label><Input name="image" defaultValue={product?.image} placeholder="https://…" /></div>
+          <div className="md:col-span-2 space-y-2">
+            <Label>Product image</Label>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+              <div className="flex-1">
+                <Button type="button" variant="outline" onClick={() => fileInputRef.current?.click()}>Select image</Button>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={onImagePick}
+                />
+              </div>
+              {imageDataUrl ? (
+                <div className="h-24 w-24 overflow-hidden rounded border border-border bg-muted">
+                  <img src={imageDataUrl} alt="Product preview" className="h-full w-full object-cover" />
+                </div>
+              ) : (
+                <div className="h-24 w-24 rounded border border-dashed border-border/70 bg-muted/50 text-center text-xs text-muted-foreground flex items-center justify-center">
+                  No image selected
+                </div>
+              )}
+            </div>
+          </div>
+          <input type="hidden" name="image" value={imageDataUrl} />
           <DialogFooter className="md:col-span-2">
             <Button type="button" variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
             <Button type="submit" className="bg-gold text-gold-foreground hover:bg-gold/90">{editing ? "Save changes" : "Create product"}</Button>
