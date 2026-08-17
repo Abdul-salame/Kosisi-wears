@@ -26,7 +26,7 @@ export function ProductGallery({ images, alt }: { images: string[]; alt: string 
             key={i}
             onClick={() => setActive(i)}
             aria-label={`View image ${i + 1}`}
-            className={cn("aspect-[4/5] w-16 shrink-0 overflow-hidden border-2 sm:w-full", active === i ? "border-gold" : "border-transparent hover:border-border")}
+            className={cn("aspect-4/5 w-16 shrink-0 overflow-hidden border-2 sm:w-full", active === i ? "border-gold" : "border-transparent hover:border-border")}
           >
             <img src={src} alt="" className="h-full w-full object-cover" />
           </button>
@@ -35,7 +35,7 @@ export function ProductGallery({ images, alt }: { images: string[]; alt: string 
 
       <div className="relative order-1 sm:order-2">
         <div
-          className="aspect-[4/5] cursor-zoom-in overflow-hidden bg-secondary"
+          className="aspect-4/5 cursor-zoom-in overflow-hidden bg-secondary"
           onMouseEnter={() => setZoom(true)}
           onMouseLeave={() => setZoom(false)}
           onMouseMove={move}

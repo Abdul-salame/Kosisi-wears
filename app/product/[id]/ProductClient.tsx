@@ -31,6 +31,7 @@ export function ProductClient({ product }: { product: Product }) {
   const recentIds = useRecentlyViewed();
 
   const stock = variantStock(product, size, color);
+  const galleryImages = product.variantImages?.[color] ?? product.images;
   const related = products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 4);
   const recent = useMemo(
     () => recentIds.filter((id) => id !== product.id).map((id) => products.find((p) => p.id === id)).filter(Boolean).slice(0, 4) as Product[],
@@ -45,7 +46,7 @@ export function ProductClient({ product }: { product: Product }) {
       </nav>
 
       <div className="grid lg:grid-cols-2 gap-10">
-        <ProductGallery images={product.images} alt={product.name} />
+        <ProductGallery images={galleryImages} alt={product.name} />
 
         <div>
           <div className="flex flex-wrap gap-2">

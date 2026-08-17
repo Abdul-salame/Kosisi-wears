@@ -216,7 +216,7 @@ export type AdminNotification = {
   title: string;
   desc: string;
   time: string;
-  type: "order" | "stock" | "review" | "payment" | "coupon";
+  type: "order" | "stock" | "review" | "payment" | "coupon" | "custom";
   read?: boolean;
 };
 

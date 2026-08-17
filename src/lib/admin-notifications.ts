@@ -39,3 +39,8 @@ export function toggleNotificationRead(id: number) {
 export function unreadNotificationCount() {
   return state.filter((n) => !n.read).length;
 }
+
+export function addNotification(n: Omit<AdminNotification, "id" | "time" | "read">) {
+  state = [{ ...n, id: Date.now(), time: "Just now", read: false }, ...state];
+  emit();
+}
