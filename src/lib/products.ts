@@ -68,7 +68,11 @@ const IMAGES = [
 ];
 
 const cats: Product["category"][] = [
-  "Hoodies", "Sweatshirts", "Varsity Jackets", "Uniforms", "Kaftans",
+  "Hoodies",
+  "Sweatshirts",
+  "Varsity Jackets",
+  "Uniforms",
+  "Kaftans",
 ];
 
 const names: Record<Product["category"], string[]> = {
