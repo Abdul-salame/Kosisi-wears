@@ -206,7 +206,7 @@ function ProductDialog({ product, trigger }: { product?: AdminProduct; trigger?:
               id: product?.id ?? `PRD-${Date.now()}`,
               name: String(f.get("name") || "New product"),
               sku: product?.sku ?? `KW-${Math.floor(Math.random() * 9000 + 1000)}`,
-              category: String(f.get("category") || "Jerseys"),
+              category: String(f.get("category") || "Hoodies"),
               price: Number(f.get("price") || 100),
               discount: Number(f.get("discount") || 0),
               stock: Number(f.get("stock") || 0),
@@ -222,9 +222,9 @@ function ProductDialog({ product, trigger }: { product?: AdminProduct; trigger?:
         >
           <div className="md:col-span-2 space-y-2"><Label>Product name</Label><Input name="name" required defaultValue={product?.name} /></div>
           <div className="space-y-2"><Label>Category</Label>
-            <Select name="category" defaultValue={product?.category ?? "Jerseys"}>
+            <Select name="category" defaultValue={product?.category ?? "Hoodies"}>
               <SelectTrigger><SelectValue /></SelectTrigger>
-              <SelectContent>{["Jerseys","Hoodies","Sweatshirts","Varsity Jackets","Uniforms","Kaftans","Caps"].map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
+              <SelectContent>{["Hoodies","Sweatshirts","Varsity Jackets","Uniforms","Kaftans","Caps"].map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
             </Select>
           </div>
           <div className="space-y-2"><Label>Status</Label>

@@ -16,7 +16,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { cn } from "@/lib/utils";
 
-const ALL_CATS = ["Jerseys","Hoodies","Sweatshirts","Varsity Jackets","Uniforms","Kaftans","Caps"] as const;
+const ALL_CATS = ["Hoodies","Sweatshirts","Varsity Jackets","Uniforms","Kaftans","Caps"] as const;
 const ALL_SIZES = ["XS","S","M","L","XL","XXL"];
 const ALL_COLORS = Array.from(new Map(products.flatMap(p => p.colors.map(c => [c.name, c])) ).values());
 const PAGE_SIZE = 9;

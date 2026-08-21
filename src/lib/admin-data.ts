@@ -79,12 +79,12 @@ export type StockMovement = {
 
 const IMG = (id: string) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=400&q=80`;
 
-const CATS = ["Jerseys", "Hoodies", "Sweatshirts", "Varsity Jackets", "Uniforms", "Kaftans", "Caps"];
+const CATS = ["Hoodies", "Sweatshirts", "Varsity Jackets", "Uniforms", "Kaftans", "Caps"];
 const NAMES = [
-  "Kosisi Home Jersey", "Noir Away Kit", "Monogram Heavy Hoodie", "Gold Crest Pullover",
+  "Monogram Heavy Hoodie", "Gold Crest Pullover",
   "Atelier Crewneck", "Heritage Varsity", "Onyx Letterman", "Signature Suit Set",
   "Royal Kaftan", "Ivory Kaftan", "Gold Emblem Cap", "Suede Six-Panel",
-  "Elite Match Jersey", "Charcoal Zip Hoodie", "Embroidered Crewneck", "Gilded Varsity",
+  "Charcoal Zip Hoodie", "Embroidered Crewneck", "Gilded Varsity",
   "Two-Piece Uniform", "Royal Embroidered Kaftan", "Gold Crest Kaftan", "Bone Baseball Cap",
 ];
 const IMGS = [
@@ -216,13 +216,13 @@ export type AdminNotification = {
   title: string;
   desc: string;
   time: string;
-  type: "order" | "stock" | "review" | "payment" | "coupon";
+  type: "order" | "stock" | "review" | "payment" | "coupon" | "custom";
   read?: boolean;
 };
 
 export const notifications: AdminNotification[] = [
   { id: 1, title: "New order #KW-5031", desc: "Amaka Okafor placed an order of ₦486,000", time: "2m ago", type: "order" },
-  { id: 2, title: "Low stock: Kosisi Home Jersey", desc: "Only 4 units remaining", time: "1h ago", type: "stock" },
+  { id: 2, title: "Low stock: Gold Emblem Cap", desc: "Only 4 units remaining", time: "1h ago", type: "stock" },
   { id: 3, title: "New review submitted", desc: "5-star review awaiting approval", time: "3h ago", type: "review" },
   { id: 4, title: "Payment received", desc: "₦1,240,000 from Flutterwave", time: "5h ago", type: "payment" },
   { id: 5, title: "Coupon SUMMER25 expired", desc: "500 uses reached before expiry", time: "1d ago", type: "coupon", read: true },

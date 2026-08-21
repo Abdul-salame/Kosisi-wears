@@ -20,7 +20,7 @@ export function ProductCard({ product, view = "grid" }: { product: Product; view
   if (view === "list") {
     return (
       <div className="group grid grid-cols-[140px_minmax(0,1fr)] sm:grid-cols-[220px_minmax(0,1fr)] gap-6 border-b border-border pb-6">
-        <Link href={`/product/${product.slug}`} className="relative aspect-[4/5] overflow-hidden bg-secondary">
+        <Link href={`/product/${product.slug}`} className="relative aspect-4/5 overflow-hidden bg-secondary">
           <img src={product.images[0]} alt={product.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
         </Link>
         <div className="flex flex-col justify-between min-w-0">
@@ -56,7 +56,7 @@ export function ProductCard({ product, view = "grid" }: { product: Product; view
 
   return (
     <div className="group relative">
-      <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
+      <div className="relative aspect-4/5 overflow-hidden bg-secondary">
       <Link href={`/product/${product.slug}`} className="block absolute inset-0">
         <img
           src={product.images[0]}
@@ -93,14 +93,14 @@ export function ProductCard({ product, view = "grid" }: { product: Product; view
           <button
             onClick={() => setQv(true)}
             aria-label="Quick view"
-            className="h-9 w-9 grid place-items-center rounded-full bg-background/90 hover:bg-background transition-colors opacity-0 group-hover:opacity-100 transition-opacity"
+            className="h-9 w-9 grid place-items-center rounded-full bg-background/90 hover:bg-background opacity-0 group-hover:opacity-100 transition"
           >
             <Eye className="h-4 w-4" />
           </button>
           <button
             onClick={() => toggleCompare(product.id)}
             aria-label="Compare"
-            className="h-9 w-9 grid place-items-center rounded-full bg-background/90 hover:bg-background opacity-0 group-hover:opacity-100 transition-opacity"
+            className="h-9 w-9 grid place-items-center rounded-full bg-background/90 hover:bg-background opacity-0 group-hover:opacity-100 transition"
           >
             <Scale className={cn("h-4 w-4", comparing && "text-gold")} />
           </button>

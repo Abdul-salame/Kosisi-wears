@@ -36,10 +36,9 @@ export async function downloadReceiptPdf(order: PlacedOrder) {
 
   try {
     const logoDataUrl = await loadImageDataUrl(BRAND.logo);
-    const logoW = 72;
-    const logoH = 28;
-    doc.addImage(logoDataUrl, "JPEG", M, y - logoH, logoW, logoH);
-    brandTextX += logoW + 12;
+    const logoSize = 34; // BRAND.logo is a square asset — keep width/height equal to avoid distortion
+    doc.addImage(logoDataUrl, "JPEG", M, y - logoSize + 6, logoSize, logoSize);
+    brandTextX += logoSize + 12;
   } catch {
     // If the logo cannot be loaded, fall back to text-only header.
   }

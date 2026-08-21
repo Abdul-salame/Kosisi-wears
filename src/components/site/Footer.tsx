@@ -29,7 +29,7 @@ export function Footer() {
           <h4 className="text-xs uppercase tracking-[0.2em] font-semibold mb-4">Shop</h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li><Link href="/shop" className="hover:text-foreground">All Products</Link></li>
-            <li><Link href={{ pathname: "/shop", query: { cat: "Jerseys" } }} className="hover:text-foreground">Jerseys</Link></li>
+            <li><Link href="/portfolio" className="hover:text-foreground">Custom Jerseys</Link></li>
             <li><Link href={{ pathname: "/shop", query: { cat: "Hoodies" } }} className="hover:text-foreground">Hoodies</Link></li>
             <li><Link href={{ pathname: "/shop", query: { cat: "Varsity Jackets" } }} className="hover:text-foreground">Varsity Jackets</Link></li>
             <li><Link href={{ pathname: "/shop", query: { cat: "Caps" } }} className="hover:text-foreground">Caps</Link></li>
