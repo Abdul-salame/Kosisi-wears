@@ -68,6 +68,7 @@ const IMAGES = [
 ];
 
 const cats: Product["category"][] = [
+  "Jerseys",
   "Hoodies",
   "Sweatshirts",
   "Varsity Jackets",
