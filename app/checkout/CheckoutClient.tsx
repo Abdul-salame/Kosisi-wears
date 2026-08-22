@@ -292,11 +292,10 @@ export function CheckoutClient() {
           {step === 2 && (
             <section>
               <h2 className="font-display text-2xl mb-6 flex items-center gap-2"><CreditCard className="h-5 w-5 text-gold" /> Payment</h2>
-              <RadioGroup value={payment} onValueChange={(v) => { setPayment(v as PaymentMethod); setErrors({}); }} className="grid sm:grid-cols-3 gap-3">
+              <RadioGroup value={payment} onValueChange={(v) => { setPayment(v as PaymentMethod); setErrors({}); }} className="grid sm:grid-cols-2 gap-3">
                 {[
                   { v: "card", t: "Card" },
                   { v: "paystack", t: "Paystack" },
-                  { v: "flutterwave", t: "Flutterwave" },
                 ].map(o => (
                   <label key={o.v} className={cn("border p-5 text-center cursor-pointer", payment === o.v ? "border-gold text-gold" : "border-border")}>
                     <RadioGroupItem value={o.v} className="sr-only" />
@@ -316,7 +315,7 @@ export function CheckoutClient() {
               )}
               {payment !== "card" && (
                 <div className="mt-6 border border-dashed border-border p-6 text-sm text-muted-foreground">
-                  You'll be redirected to <strong className="text-foreground">{payment === "paystack" ? "Paystack" : "Flutterwave"}</strong> to complete payment securely.
+                  You'll be redirected to <strong className="text-foreground">Paystack</strong> to complete payment securely.
                 </div>
               )}
               <p className="mt-6 flex items-center gap-2 text-xs text-muted-foreground"><Lock className="h-3.5 w-3.5" /> Encrypted and PCI-DSS compliant.</p>

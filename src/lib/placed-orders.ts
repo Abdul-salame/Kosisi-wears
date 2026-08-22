@@ -10,7 +10,7 @@ export type PlacedOrderItem = {
   price: number;
 };
 
-export type PaymentMethod = "card" | "paystack" | "flutterwave";
+export type PaymentMethod = "card" | "paystack";
 
 export type PlacedOrder = {
   id: string;

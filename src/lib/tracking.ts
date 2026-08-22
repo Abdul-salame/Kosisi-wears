@@ -43,7 +43,7 @@ export const TRACKED_ORDERS: TrackedOrder[] = [
     items: [{ name: "Atelier Crewneck", qty: 1, price: 175 }, { name: "Ivory Linen Kaftan", qty: 3, price: 60 }],
     events: [
       { label: "Order placed", date: "Jul 30, 12:41", note: "Order received" },
-      { label: "Payment confirmed", date: "Jul 30, 12:43", note: "Paid via Flutterwave" },
+      { label: "Payment confirmed", date: "Jul 30, 12:43", note: "Paid via card" },
       { label: "Processing", date: "Jul 31, 09:00", note: "Being prepared at the atelier" },
     ],
   },

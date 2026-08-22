@@ -28,7 +28,7 @@ const FAQS = {
   ],
   "Account & Payments": [
     ["Do I need an account to order?", "No — guest checkout is fully supported. Creating an account unlocks order history, saved addresses, and early access to drops."],
-    ["What payment methods do you accept?", "Cards (Visa, Mastercard, Amex), Paystack and Flutterwave."],
+    ["What payment methods do you accept?", "Cards (Visa, Mastercard, Amex) and Paystack."],
   ],
 };
 

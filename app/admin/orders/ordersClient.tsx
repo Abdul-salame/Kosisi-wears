@@ -63,7 +63,7 @@ export function PageClient() {
             <SelectTrigger className="w-[140px]"><SelectValue placeholder="Payment" /></SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All payment</SelectItem>
-              {["Card","Paystack","Flutterwave","Bank"].map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+              {["Card","Paystack","Bank"].map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
             </SelectContent>
           </Select>
         </div>

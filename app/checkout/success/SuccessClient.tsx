@@ -13,7 +13,6 @@ import { trackingUrl } from "@/lib/receipt";
 const PAYMENT_LABEL: Record<string, string> = {
   card: "Card payment",
   paystack: "Paystack",
-  flutterwave: "Flutterwave",
 };
 
 export function SuccessClient() {

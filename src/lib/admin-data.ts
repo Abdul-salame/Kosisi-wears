@@ -8,7 +8,7 @@ export type AdminOrder = {
   total: number;
   items: number;
   status: OrderStatus;
-  payment: "Card" | "Paystack" | "Flutterwave" | "Bank";
+  payment: "Card" | "Paystack" | "Bank";
 };
 
 export type AdminCustomer = {
@@ -141,7 +141,7 @@ export const adminCustomers: AdminCustomer[] = Array.from({ length: 24 }, (_, i)
 });
 
 const STATUSES: OrderStatus[] = ["Pending", "Paid", "Processing", "Shipped", "Delivered", "Cancelled"];
-const PAYMENTS: AdminOrder["payment"][] = ["Card", "Paystack", "Flutterwave", "Bank"];
+const PAYMENTS: AdminOrder["payment"][] = ["Card", "Paystack", "Bank"];
 
 export const adminOrders: AdminOrder[] = Array.from({ length: 32 }, (_, i) => {
   const c = adminCustomers[i % adminCustomers.length];
@@ -224,7 +224,7 @@ export const notifications: AdminNotification[] = [
   { id: 1, title: "New order #KW-5031", desc: "Amaka Okafor placed an order of ₦486,000", time: "2m ago", type: "order" },
   { id: 2, title: "Low stock: Gold Emblem Cap", desc: "Only 4 units remaining", time: "1h ago", type: "stock" },
   { id: 3, title: "New review submitted", desc: "5-star review awaiting approval", time: "3h ago", type: "review" },
-  { id: 4, title: "Payment received", desc: "₦1,240,000 from Flutterwave", time: "5h ago", type: "payment" },
+  { id: 4, title: "Payment received", desc: "₦1,240,000 from Paystack", time: "5h ago", type: "payment" },
   { id: 5, title: "Coupon SUMMER25 expired", desc: "500 uses reached before expiry", time: "1d ago", type: "coupon", read: true },
   { id: 6, title: "New order #KW-5028", desc: "David Kim placed an order of ₦312,000", time: "1d ago", type: "order", read: true },
   { id: 7, title: "Review approved", desc: "Zara Martins · Monogram Heavy Hoodie", time: "2d ago", type: "review", read: true },
