@@ -5,7 +5,6 @@ import type { PlacedOrder } from "./placed-orders";
 const PAYMENT_LABEL: Record<string, string> = {
   card: "Card payment",
   paystack: "Paystack",
-  flutterwave: "Flutterwave",
 };
 
 const money = (n: number) => "NGN " + n.toLocaleString("en-NG", { maximumFractionDigits: 0 });

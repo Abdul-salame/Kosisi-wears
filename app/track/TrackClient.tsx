@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 
 const ICONS = [Clock, CreditCard, PackageSearch, Truck, Home];
 
-const PAYMENT_LABEL: Record<string, string> = { card: "card", paystack: "Paystack", flutterwave: "Flutterwave" };
+const PAYMENT_LABEL: Record<string, string> = { card: "card", paystack: "Paystack" };
 
 function fromPlaced(o: PlacedOrder): TrackedOrder {
   const placed = new Date(o.placedAt);
