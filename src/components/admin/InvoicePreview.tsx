@@ -5,6 +5,7 @@ import { Download, Printer } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { adminProducts, formatCurrency, type AdminOrder } from "@/lib/admin-data";
+import { BRAND } from "@/lib/brand";
 
 const seed = (n: number) => { const x = Math.sin(n) * 10000; return x - Math.floor(x); };
 
@@ -48,11 +49,14 @@ export function InvoicePreview({ order, open, onOpenChange }: { order: AdminOrde
 
         <div id="invoice-sheet" className="bg-card px-8 py-10 text-sm print:px-0">
           <div className="flex flex-wrap items-start justify-between gap-6 border-b border-border/60 pb-6">
-            <div>
-              <div className="font-display text-2xl tracking-tight">KOSISI</div>
-              <div className="mt-1 text-xs uppercase tracking-[0.25em] text-muted-foreground">Atelier of Modern Sport</div>
-              <div className="mt-4 text-xs text-muted-foreground leading-relaxed">
-                12 Marina Boulevard<br />Lagos, Nigeria<br />billing@kosisi.style
+            <div className="flex items-center gap-3">
+              <img src={BRAND.logo} alt={`${BRAND.short} logo`} width={44} height={44} className="h-11 w-11 shrink-0 rounded-full object-cover print:h-9 print:w-9" />
+              <div>
+                <div className="font-display text-2xl tracking-tight">KOSISI</div>
+                <div className="mt-1 text-xs uppercase tracking-[0.25em] text-muted-foreground">Atelier of Modern Sport</div>
+                <div className="mt-4 text-xs text-muted-foreground leading-relaxed">
+                  12 Marina Boulevard<br />Lagos, Nigeria<br />billing@kosisi.style
+                </div>
               </div>
             </div>
             <div className="text-right">

@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState, type ReactNode } from "react";
 import {
   LayoutDashboard, Package, Tags, ShoppingCart, Users, Boxes,
   BarChart3, Ticket, Star, Settings, Bell, Search, Sun, Moon,
-  Menu, LogOut, ChevronRight,
+  Menu, LogOut, ChevronRight, Shirt,
 } from "lucide-react";
 import { useTheme } from "@/lib/theme";
 import { Input } from "@/components/ui/input";
@@ -36,6 +36,7 @@ const NAV: NavItem[] = [
   { to: "/admin/products", label: "Products", icon: Package },
   { to: "/admin/categories", label: "Categories", icon: Tags },
   { to: "/admin/orders", label: "Orders", icon: ShoppingCart },
+  { to: "/admin/custom-orders", label: "Custom Requests", icon: Shirt },
   { to: "/admin/customers", label: "Customers", icon: Users },
   { to: "/admin/inventory", label: "Inventory", icon: Boxes },
   { to: "/admin/analytics", label: "Analytics", icon: BarChart3 },

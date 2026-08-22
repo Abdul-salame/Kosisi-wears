@@ -113,7 +113,7 @@ export const defaultSettings: AdminSettings = {
   description: "Luxury sportswear crafted in limited runs.",
   currency: "NGN",
   timezone: "Africa/Lagos",
-  payments: { Paystack: true, Flutterwave: true, Stripe: false, "Bank transfer": true },
+  payments: { Paystack: true, Stripe: false, "Bank transfer": true },
   shipping: { standard: "₦15,000", freeOver: "₦250,000", express: "₦35,000", processing: "2-3 business days" },
   social: { Instagram: "", TikTok: "", Twitter: "", YouTube: "" },
   notifications: {

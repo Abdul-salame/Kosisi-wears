@@ -57,9 +57,13 @@ export function PageClient() {
           </div>
           <Link href="/shop" className="inline-flex items-center justify-center text-[11px] uppercase tracking-[0.2em] hover:text-gold">View All →</Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="flex sm:grid overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none -mx-4 px-4 sm:mx-0 sm:px-0 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 scrollbar-none">
           {categories.slice(0, 7).map((c) => (
-            <Link key={c.name} href={{ pathname: "/shop", query: { cat: c.name } }} className="group relative aspect-4/5 overflow-hidden bg-secondary">
+            <Link
+              key={c.name}
+              href={{ pathname: "/shop", query: { cat: c.name } }}
+              className="group relative aspect-4/5 overflow-hidden bg-secondary shrink-0 w-[62vw] sm:w-auto snap-start"
+            >
               <img src={c.image} alt={c.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-linear-to from-black/70 via-black/10 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-5">
@@ -68,7 +72,10 @@ export function PageClient() {
               </div>
             </Link>
           ))}
-          <Link href="/shop" className="group relative aspect-3/4 overflow-hidden bg-gold text-gold-foreground grid place-items-center">
+          <Link
+            href="/shop"
+            className="group relative aspect-3/4 overflow-hidden bg-gold text-gold-foreground grid place-items-center shrink-0 w-[62vw] sm:w-auto snap-start"
+          >
             <div className="text-center p-6">
               <Sparkles className="h-6 w-6 mx-auto" />
               <p className="font-display text-xl mt-2">Explore All</p>

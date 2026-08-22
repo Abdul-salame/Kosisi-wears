@@ -37,8 +37,8 @@ export function ReceiptPreview({ order }: { order: PlacedOrder }) {
           <div className="px-6 py-5 text-sm">
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-24 overflow-hidden rounded border border-border bg-muted/40">
-                  <Image src={BRAND.logo} alt={`${BRAND.name} logo`} width={96} height={40} className="h-full w-full object-contain" />
+                <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full border border-border bg-muted/40">
+                  <Image src={BRAND.logo} alt={`${BRAND.name} logo`} width={40} height={40} className="h-full w-full object-cover" />
                 </div>
                 <div>
                   <p className="font-display text-lg tracking-[0.15em]">{BRAND.short}</p>
