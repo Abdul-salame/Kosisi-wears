@@ -212,8 +212,12 @@ function ProductGrid({ title, eyebrow, products, tinted, badge }: { title: strin
           </div>
           <Link href={badge ? { pathname: "/shop", query: { badge } } : "/shop"} className="text-[11px] uppercase tracking-[0.2em] hover:text-gold">View All →</Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10">
-          {products.slice(0, 8).map((p) => <ProductCard key={p.id} product={p} />)}
+        <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-5 px-5 sm:mx-0 sm:px-0 sm:overflow-visible sm:snap-none sm:grid sm:grid-cols-2 lg:grid-cols-4 scrollbar-none">
+          {products.slice(0, 8).map((p) => (
+            <div key={p.id} className="shrink-0 w-[72vw] snap-start sm:w-auto sm:min-w-0">
+              <ProductCard product={p} />
+            </div>
+          ))}
         </div>
       </div>
     </section>
